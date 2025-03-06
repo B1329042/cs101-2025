@@ -1,0 +1,31 @@
+#include <stdio.h>
+
+int main(){
+    FILE* fp;
+    fp = fopen("a.bin","wb");
+    int a[] = {0,1,2};
+    char b[] = "ABC";
+    float c[] = {1.1,1.2,1.3};
+    fwrite(a,sizeof(int),3,fp);
+    fwrite(b,sizeof(char),3,fp);
+    fwrite(c,sizeof(float),3,fp);
+    fclose(fp);
+	int r_a[3];
+    char r_b[3]={0};
+    float r_c[3];
+    fp = fopen("a.bin","rb");
+    fread(r_a,sizeof(int),3,fp);
+    fread(r_b,sizeof(char),3,fp);
+    fread(r_c,sizeof(float),3,fp);
+    fclose(fp);    
+    int x;
+    for(x=0;x<3;x++){
+    	printf("%d ",r_a[x]);}
+	printf("\n");
+	for(x=0;x<3;x++){
+    	printf("%c ",r_b[x]);}
+	printf("\n");
+	for(x=0;x<3;x++){
+    	printf("%f ",r_c[x]);}
+	
+}
